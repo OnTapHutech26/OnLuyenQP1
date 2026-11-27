@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f6fb">
+<title>Góc ôn tập</title>
+<script>document.documentElement.dataset.effects="on";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta name="description" content="Ôn trắc nghiệm miễn phí cho sinh viên: luyện theo bài, thi thử, học mượt trên điện thoại."><meta property="og:title" content="Góc ôn tập"><meta property="og:description" content="Ôn trắc nghiệm miễn phí cho sinh viên, học mượt trên điện thoại."><script>try{var t=localStorage.getItem("mm_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/multisubject.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<main class="shell">
+<div class="screen-deck" id="screenDeck">
+<section class="app-screen home-screen" id="homeScreen" aria-label="Trang chủ">
+  <header class="home-header">
+    <div class="home-greeting"><span class="home-brand">GÓC HỌC TẬP</span><h1>Chọn môn để bắt đầu</h1><p>Mỗi ngày tiến bộ một chút ✨</p></div>
+    <img class="home-mascot" id="homeMascot" alt="Bạn gà nhỏ chào mừng" />
+  </header>
+  <div class="mm-tools" id="mmTools"><span class="mm-chip mm-streak" id="mmStreak" title="Chuỗi ngày học liên tiếp">🔥 <b>0</b> ngày</span><span class="mm-chip mm-goal" id="mmGoal" title="Mục tiêu hôm nay">Hôm nay <b>0</b>/20 câu<i></i></span><span class="mm-sp"></span><button class="mm-btn" id="mmTheme" type="button" aria-label="Đổi giao diện sáng/tối"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="i-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/><g class="i-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button><button class="mm-btn" id="mmShare" type="button" aria-label="Chia sẻ"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg></button></div>
+<label class="home-search"><span class="search-glass" aria-hidden="true"></span><input id="homeSearch" type="search" placeholder="Tìm môn học..." autocomplete="off" aria-label="Tìm nội dung"><button id="clearSearch" type="button" aria-label="Xóa nội dung tìm kiếm" hidden>×</button></label>
+  <div class="home-section-title"><h2>Môn học</h2><span>Chọn môn bạn muốn ôn</span></div>
+  <section class="home-grid" id="homeTiles" aria-label="Chọn môn học">
+</section>
+<p id="catalogStatus" class="catalog-status" role="status">Đang tải môn học…</p>
+<p id="currentStudy" class="current-study" hidden></p>
+  <p class="home-no-results" id="homeNoResults" hidden>Không tìm thấy môn học phù hợp.</p>
+  <nav class="home-bottom" aria-label="Lối tắt ôn tập">
+    <div class="study-dock-stage">
+      <div class="study-dock-glass" aria-hidden="true"></div>
+      <div class="study-dock-items">
+        <button class="study-dock-item" type="button" data-dock-action="resume" aria-label="Tiếp tục ôn" disabled><span class="study-dock-icon" aria-hidden="true">▶</span><span class="study-dock-label">Tiếp tục ôn</span><span class="study-dock-tip" aria-hidden="true">Tiếp tục ôn</span></button>
+        <button class="study-dock-item" type="button" data-dock-action="wrong" aria-label="Ôn câu sai" disabled><span class="study-dock-icon" aria-hidden="true">↻</span><span class="study-dock-label">Ôn câu sai</span><span class="study-dock-tip" aria-hidden="true">Ôn câu sai</span></button>
+        <button class="study-dock-item" type="button" data-dock-action="exam" aria-label="Thi thử" disabled><span class="study-dock-icon" aria-hidden="true">◷</span><span class="study-dock-label">Thi thử</span><span class="study-dock-tip" aria-hidden="true">Thi thử 50 câu</span></button>
+        <button class="study-dock-item" type="button" data-dock-action="progress" aria-label="Tiến độ"><span class="study-dock-icon" aria-hidden="true">▥</span><span class="study-dock-label">Tiến độ</span><span class="study-dock-tip" aria-hidden="true">Tiến độ</span></button>
+      </div>
+    </div>
+    <button id="aboutButton" class="about-button" type="button" aria-label="Thông tin người thiết kế">i</button>
+  </nav>
+
+  <div class="home-modal" id="homeModal" hidden role="dialog" aria-modal="true" aria-labelledby="homeModalTitle">
+    <div class="home-modal-card"><button class="modal-close" id="closeHomeModal" type="button" aria-label="Đóng">×</button><img id="modalMascot" alt="Bạn gà nhỏ"><span class="modal-kicker" id="homeModalKicker"></span><h2 id="homeModalTitle"></h2><p id="homeModalText"></p><div class="home-quiz-setup" id="homeQuizSetup" hidden>
+  <div id="genericModeList" class="generic-mode-list" aria-label="Chọn cách ôn"></div>
+  <p id="genericSetupNote" class="generic-setup-note" role="status"></p>
+  <div id="genericResume" class="resume-attempt" hidden><span></span><button type="button">Tiếp tục lượt trước</button></div>
+  <section class="setup" aria-label="Chọn bộ câu hỏi">
+    <label class="select-wrap"><select id="bank" aria-label="Chọn bộ đề"><option value="new">📘 Đề mới · file DOC</option><option value="old">📗 Đề cũ · file index</option><option value="merged">📚 Bộ gộp không trùng · 316 câu</option></select></label>
+    <label class="select-wrap" id="scope-wrap"><select id="scope" aria-label="Chọn phạm vi ôn tập"><option value="all">Ôn toàn bộ câu hỏi</option></select></label>
+  </section>
+  <section class="mode-row" aria-label="Chọn chế độ">
+    <button id="practiceMode" class="mode-button active" type="button" aria-pressed="true"><span class="mode-icon">🌱</span><span><span class="mode-title">Ôn tập nhanh</span><span class="mode-sub">Tự chọn phạm vi ôn</span></span></button>
+    <button id="examMode" class="mode-button exam" type="button" aria-pressed="false"><span class="mode-icon">🏆</span><span><span class="mode-title">Thi thử 50 câu</span><span class="mode-sub">Ngẫu nhiên · thang điểm 10</span></span></button>
+  </section>
+  <button id="beginQuiz" class="button begin-button" type="button"><span>Bắt đầu ôn tập</span><span aria-hidden="true">→</span></button>
+</div><button class="modal-action" id="homeModalAction" type="button">Đã hiểu</button></div>
+  </div>
+</section>
+<section class="app-screen study-screen" id="studyScreen" aria-label="Làm bài ôn tập" hidden>
+  <header class="study-header"><button id="backToSelection" class="back-button" type="button"><span aria-hidden="true">←</span> Trang chủ</button><div class="study-header-right"><img id="studyMascot" alt="" aria-hidden="true"><div class="top-pill">↑ Lướt lên · xuống để chuyển câu</div></div></header>
+  <section class="card" id="quiz" aria-live="polite"></section>
+  <nav class="study-controls" aria-label="Chuyển câu và ôn lại"><button id="reviewWrong" type="button" hidden>Làm lại 0 câu Sai</button><button id="returnToMain" type="button" hidden>Tiếp tục đề</button><button id="submitExam" type="button" hidden>Nộp bài</button></nav>
+</section>
+</div>
+</main>
+<script src="assets/bank-engine.js"></script>
+<script src="assets/catalog.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/effects.js"></script>
+<script src="assets/motion.js"></script>
+<script src="assets/interface.js"></script>
+
+<!-- Môn học và cách ôn được khai báo trong các file banks/*.json. -->
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "modes": {
+    "A": {"engine": "all", "title": "Ôn hết", "icon": "📚", "description": "Đủ mọi câu trong phần đã chọn, không trùng trong lượt; xáo câu và đáp án."},
+    "B": {"engine": "sample", "title": "Ôn nhanh", "icon": "🌱", "questionCount": 20, "description": "Lượt ngắn, ưu tiên câu sai và câu ít gặp."},
+    "C": {"engine": "exam", "title": "Thi thử", "icon": "🏆", "questionCount": 50, "durationMinutes": 60, "balance": "equal", "repeatWrongLimit": 15, "repeatCorrectLimit": 3, "description": "Phủ các nhánh kiến thức, có giờ và ưu tiên ôn lại lỗi của đề trước."},
+    "D": {"engine": "mistakes", "title": "Ôn câu sai", "icon": "↻", "description": "Chỉ lấy câu có lần trả lời gần nhất còn sai trong phần đã chọn."}
+  }
+}

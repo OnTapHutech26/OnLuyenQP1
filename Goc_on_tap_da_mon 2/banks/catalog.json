@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T16:22:21.235Z",
+  "banks": [
+    {
+      "id": "ly_sinh",
+      "title": "Lý sinh",
+      "file": "banks/ly_sinh_dien_sinh_hoc.json",
+      "questionCount": 150,
+      "sha256": "d4a175df12e302d8237ac08071b54488b87542211fe260f5bbae1c2de22533ee"
+    }
+  ]
+}

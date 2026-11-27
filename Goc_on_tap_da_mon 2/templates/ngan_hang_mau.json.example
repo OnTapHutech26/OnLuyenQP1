@@ -1,0 +1,24 @@
+{
+  "bankFormatVersion": 2,
+  "subject": {
+    "id": "ma_mon_duy_nhat",
+    "title": "Tên môn học",
+    "subtitle": "Phần kiến thức đang ôn",
+    "icon": "📘",
+    "theme": "violet"
+  },
+  "studyModes": ["A", {"code": "B", "questionCount": 20}, {"code": "C", "questionCount": 50, "durationMinutes": 60, "balance": "equal"}, "D"],
+  "topics": [{"id": "nhanh_1", "title": "Tên nhánh kiến thức"}],
+  "questions": [
+    {
+      "id": "ma_mon-cau-001",
+      "topicId": "nhanh_1",
+      "question": "Nội dung câu hỏi?",
+      "options": ["Phương án thứ nhất", "Phương án thứ hai", "Phương án thứ ba", "Phương án thứ tư"],
+      "answerIndex": 0,
+      "explanation": "Giải thích vì sao đáp án đúng; answerIndex dùng số 0–3.",
+      "isOriginal": false,
+      "sourceRefs": [{"pdfPages": [1]}]
+    }
+  ]
+}

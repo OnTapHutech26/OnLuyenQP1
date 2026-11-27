@@ -1,0 +1,68 @@
+GÓC ÔN TẬP — NGÂN HÀNG TỰ KHAI BÁO MÔN VÀ DẠNG ÔN
+
+LẦN CẬP NHẬT NÀY
+Đưa toàn bộ nội dung của thư mục này vào gốc repository GitHub:
+- index.html
+- assets/
+- banks/
+- study_modes.json
+- scripts/
+- .github/workflows/pages.yml (đây là thư mục ẩn, nhớ đưa cả file này lên)
+
+Trong GitHub, chọn Settings → Pages → Build and deployment → Source: GitHub Actions.
+Chỉ thiết lập một lần. Sau khi lưu thay đổi, đợi tác vụ Pages chạy xong rồi mở lại web.
+Nếu repository đã có tác vụ xuất bản Pages riêng, dùng tác vụ trong bộ này thay cho tác vụ cũ để tránh hai lần xuất bản cạnh tranh.
+Gói này đã chứa môn Lý sinh, riêng Điện – điện sinh học, 150 câu. Không khôi phục ngân hàng cũ bạn đã xóa.
+
+TỪ LẦN SAU
+1. Lấy file ngân hàng đã được soạn theo định dạng này.
+2. Upload file .json vào thư mục banks trên nhánh chính của repository.
+3. Lưu thay đổi, đợi GitHub cập nhật xong rồi tải lại trang.
+Web tự nhận tên, biểu tượng, số câu, các nhánh và các kiểu ôn của môn đó.
+Xóa file khỏi banks: sau khi bản cập nhật hoàn tất, môn đó tự biến mất.
+Thay file cùng mã môn: cập nhật nội dung môn đó. Mã câu giữ ổn định giúp theo dõi câu đã học; câu đổi nội dung/đáp án được nhận biết để tránh dùng lịch sử cũ sai.
+Không chỉnh tay banks/catalog.json; danh sách này được tạo lại tự động mỗi lần cập nhật.
+GitHub Pages không tự liệt kê thư mục ở trình duyệt. Tác vụ tự tạo danh sách là bước giúp việc chỉ thêm/xóa JSON hoạt động với tên file tùy ý.
+
+DANH SÁCH DẠNG ÔN DÙNG CHUNG
+study_modes.json là danh sách quy tắc, dùng cho tất cả môn:
+A = Ôn hết: đủ mọi câu trong phần đã chọn, mỗi câu một lần; đảo câu và đáp án.
+B = Ôn nhanh: mặc định 20 câu, ưu tiên lỗi và câu ít gặp.
+C = Thi thử: mặc định 50 câu/60 phút; chia đều theo các nhánh, ưu tiên tối đa 15 lỗi của đề trước, hạn chế lặp câu đã đúng trước đó khi còn đủ câu thay thế.
+D = Ôn câu sai: câu có lần làm gần nhất còn sai, trong phần kiến thức đã chọn.
+
+Mỗi ngân hàng tự chọn các mã được bật trong studyModes.
+Ví dụ ["A","C"]: môn chỉ có Ôn hết và Thi thử.
+Ví dụ ["A",{"code":"B","questionCount":10},{"code":"C","questionCount":40,"durationMinutes":45},"D"]: môn có ôn nhanh 10 câu, thi thử 40 câu/45 phút.
+Có thể đổi tên hiển thị bằng title trong từng cấu hình mà không đổi quy tắc của mã đó.
+Có thể thêm một mã mới vào study_modes.json với engine all/sample/exam/mistakes, rồi dùng mã đó trong ngân hàng. Đây là dữ liệu cấu hình, không chứa mã JavaScript.
+Thi thử không tự nhân đôi câu nếu phần đã chọn thiếu câu: nút bắt đầu bị khóa và nói rõ lý do. Ôn nhanh lấy tối đa số câu hiện có.
+Các dạng B/C có thể chọn balance equal/proportional/none. equal chia đều và chuyển phần dư cho nhánh còn câu.
+Nếu một đề trước chứa phần lớn ngân hàng, giới hạn lặp câu đúng có thể được nới để vẫn đủ câu; không bịa thêm câu và không lặp một câu hai lần trong cùng đề.
+
+TỈ LỆ NGUỒN (KHI MÔN CẦN)
+Gắn isOriginal: true cho câu gốc. Một dạng ôn có thể đặt originalRatio: 0.8.
+B/C cố gắng lấy 80% gốc, 20% tham khảo; nếu nguồn thiếu thì dùng tối đa số câu có sẵn.
+A vẫn giữ đủ toàn bộ câu: xếp 4 gốc + 1 tham khảo đến khi một nguồn hết, rồi làm phần còn lại.
+Nếu tỉ lệ nguồn xung đột số lượng từng nhánh, số câu/không trùng/tỉ lệ nguồn được ưu tiên; phần phân bố nhánh còn thiếu được điều chỉnh.
+
+CÁC CHỨC NĂNG GIỮ LẠI
+- Lướt lên/xuống và trackpad chuyển câu, không cuộn cả trang làm bài.
+- Đảo vị trí đáp án, chấm ngay, điểm tính trên thang 10.
+- Chỉ hiện nút Nộp bài thi thử sau khi đã trả lời hết; hết giờ tự kết thúc, câu chưa trả lời được tính sai.
+- Bấm Làm lại X câu Sai ngay giữa đề: ôn đúng các câu sai của lượt đó; làm lại bộ sai hoặc quay về đúng chỗ đang làm. Đồng hồ đề chính vẫn tiếp tục.
+- Lưu lượt đang làm theo từng môn và thời hạn thi tuyệt đối. Đóng/tải lại trang không khởi động lại 60 phút.
+- Chọn nhánh kiến thức, thanh số câu cuộn riêng trên máy tính, bảng số câu trên điện thoại.
+- Dock, hiệu ứng thẻ môn, hiệu ứng mở/thu về thẻ, hiệu ứng chấm bài và nút bật/tắt trong trang làm bài.
+- Mọi dữ liệu tên môn, câu hỏi và giải thích đều được hiển thị như văn bản, không chạy HTML trong ngân hàng.
+
+XEM TRÊN MÁY
+Nếu có Node.js 18 trở lên, chạy Mo_web.command hoặc node scripts/serve.cjs.
+Mở địa chỉ được in ra (mặc định http://127.0.0.1:8816/).
+Không nhấp đúp index.html để kiểm tra tải JSON riêng qua file://.
+Xem mẫu cấu trúc ngân hàng ở templates/ngan_hang_mau.json.example. File mẫu không được nhận như một môn chính thức.
+
+ĐIỀU CHƯA TỰ LÀM ĐƯỢC
+Tải một file JSON lên repository không có bộ web/tác vụ trên, hoặc để file bên ngoài banks, thì web không thể tự biết file đó.
+Phải chờ bản xuất bản GitHub Pages mới thành công; chỉ upload mà chưa lưu thay đổi/chưa chạy xong thì chưa thấy cập nhật.
+Nếu ngân hàng sai cấu trúc hoặc trùng mã môn, tác vụ báo lỗi tên file và giữ bản web đang xuất bản trước đó.
